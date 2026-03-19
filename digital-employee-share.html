@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数字员工分享</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Orbitron:wght@500;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg-primary: #050b14;
+      --bg-secondary: #0b1526;
+      --bg-card: rgba(10, 24, 46, 0.78);
+      --text-primary: #eff6ff;
+      --text-secondary: #a9c0de;
+      --brand-red: #ff3e57;
+      --electric-cyan: #1de8ff;
+      --accent: var(--electric-cyan);
+      --accent-2: var(--brand-red);
+      --accent-glow: rgba(39, 229, 255, 0.35);
+      --line: rgba(141, 181, 227, 0.22);
+      --font-display: 'Orbitron', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      --font-body: 'Manrope', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      --page-padding: clamp(1.3rem, 3vw, 2.1rem);
+      --section-gap: clamp(2.8rem, 7vh, 5.4rem);
+      --card-gap: clamp(0.9rem, 1.8vw, 1.3rem);
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg-primary);
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background:
+        radial-gradient(120vh 90vh at 82% -12%, rgba(39, 229, 255, 0.12), transparent 62%),
+        radial-gradient(100vh 90vh at -12% 12%, rgba(255, 95, 114, 0.12), transparent 70%),
+        linear-gradient(160deg, var(--bg-primary), #070f1d 42%, #091326 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(transparent 97%, rgba(38, 58, 90, 0.45) 100%),
+        linear-gradient(90deg, transparent 97%, rgba(38, 58, 90, 0.35) 100%);
+      background-size: 28px 28px;
+      opacity: 0.24;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page-shell {
+      width: min(94vw, 1220px);
+      margin: 0 auto;
+      padding: clamp(1.6rem, 4vw, 2.4rem) var(--page-padding) clamp(4rem, 8vw, 6rem);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: clamp(1.6rem, 4vh, 2.3rem);
+      padding: 0.72rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(39, 229, 255, 0.3);
+      background: rgba(12, 27, 49, 0.68);
+      text-decoration: none;
+      color: #dff6ff;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible {
+      border-color: rgba(39, 229, 255, 0.56);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .hero {
+      display: grid;
+      gap: 1.2rem;
+      padding: clamp(1.6rem, 4vw, 2.5rem);
+      border: 1px solid rgba(39, 229, 255, 0.22);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top right, rgba(29, 232, 255, 0.12), transparent 36%),
+        linear-gradient(180deg, rgba(11, 25, 44, 0.92), rgba(8, 18, 33, 0.9));
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow,
+    .hero-meta span {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      line-height: 1.12;
+      letter-spacing: 0.02em;
+      text-wrap: balance;
+    }
+
+    h1,
+    h2 {
+      background: linear-gradient(118deg, var(--electric-cyan) 0%, var(--brand-red) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 4rem);
+      max-width: 18ch;
+    }
+
+    h2 {
+      font-size: clamp(1.25rem, 2.8vw, 2.3rem);
+    }
+
+    .hero p,
+    .hero li,
+    .section-note,
+    .agent-meta dt,
+    .agent-meta dd,
+    .footer-note {
+      font-size: clamp(0.94rem, 1.1vw, 1rem);
+      line-height: 1.72;
+    }
+
+    .hero-copy {
+      max-width: 66ch;
+      color: #d8e8fc;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .hero-meta strong {
+      display: inline-flex;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 0.95rem;
+      color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: clamp(2rem, 5vh, 3rem);
+    }
+
+    .quick-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.5rem;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(141, 181, 227, 0.2);
+      background: rgba(10, 24, 46, 0.76);
+      text-decoration: none;
+      color: #d5eaff;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .quick-nav a:hover,
+    .quick-nav a:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(39, 229, 255, 0.46);
+      outline: none;
+    }
+
+    .sections {
+      display: grid;
+      gap: var(--section-gap);
+      margin-top: clamp(2.8rem, 7vh, 4rem);
+    }
+
+    .section-block {
+      display: grid;
+      gap: clamp(1.1rem, 2.4vh, 1.8rem);
+    }
+
+    .section-head {
+      display: grid;
+      gap: 0.48rem;
+    }
+
+    .section-note {
+      color: var(--text-secondary);
+    }
+
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--card-gap);
+    }
+
+    .agent-card {
+      display: grid;
+      gap: 0.9rem;
+      padding: clamp(1rem, 2vw, 1.35rem);
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: var(--bg-card);
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+
+    .agent-card h3 {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: #f2f7ff;
+    }
+
+    .agent-meta {
+      display: grid;
+      gap: 0.78rem;
+      margin: 0;
+    }
+
+    .agent-meta div {
+      display: grid;
+      gap: 0.22rem;
+    }
+
+    .agent-meta dt {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .agent-meta dd {
+      margin: 0;
+      color: #d9e9ff;
+      word-break: break-word;
+    }
+
+    .agent-meta a {
+      color: #8fe4ff;
+      text-decoration-color: rgba(143, 228, 255, 0.54);
+      text-underline-offset: 0.18em;
+      word-break: break-all;
+    }
+
+    .footer-note {
+      margin-top: clamp(3rem, 7vh, 4.6rem);
+      color: rgba(215, 231, 253, 0.7);
+    }
+
+    @media (max-width: 900px) {
+      .agent-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page-shell {
+        width: min(100vw, 100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <a class="back-link" href="openclaw-share.html">← 返回 OpenClaw 分享</a>
+
+    <header class="hero">
+      <span class="eyebrow">OpenClaw 扩展阅读</span>
+      <h1 id="pageTitle">数字员工分享</h1>
+      <p class="hero-copy">把原始数字员工.md 中的岗位清单拆成可滚动阅读的分组卡片页。保留岗位名、中文名、适用场景与原始链接，方便会后按分类继续查阅。</p>
+      <div class="hero-meta">
+        <strong id="sectionCount">0 个分类</strong>
+        <strong id="agentCount">0 个岗位</strong>
+      </div>
+    </header>
+
+    <nav class="quick-nav" id="quickNav" aria-label="分类导航"></nav>
+    <section class="sections" id="sections"></section>
+    <p class="footer-note">内容按源 md 顺序呈现，文案默认逐句采样，不额外改写。</p>
+  </main>
+
+  <script id="markdown-source" type="application/json">"# 数字员工.md\n\n## 工程（Engineering）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| Frontend Developer | 前端开发工程师 | 开发现代 Web 应用、像素级还原界面、优化 Core Web Vitals | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-frontend-developer.md) |\n| Backend Architect | 后端架构师 | 设计服务端系统、微服务、API 与云基础设施 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-backend-architect.md) |\n| Mobile App Builder | 移动应用开发师 | 开发 iOS/Android 原生或跨平台移动应用 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-mobile-app-builder.md) |\n| AI Engineer | AI 工程师 | 构建机器学习功能、数据管道与 AI 驱动应用 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-ai-engineer.md) |\n| DevOps Automator | DevOps 自动化工程师 | 搭建 CI/CD、部署自动化、监控与基础设施自动化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-devops-automator.md) |\n| Rapid Prototyper | 快速原型师 | 快速做 POC、MVP、黑客松项目与高频迭代验证 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-rapid-prototyper.md) |\n| Senior Developer | 高级开发工程师 | 处理复杂实现、框架高级模式与关键架构决策 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-senior-developer.md) |\n| Security Engineer | 安全工程师 | 做威胁建模、安全代码审查、漏洞评估与安全架构设计 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-security-engineer.md) |\n| Autonomous Optimization Architect | 自主优化架构师 | 构建需要智能路由、成本控制与影子测试的自主系统 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-autonomous-optimization-architect.md) |\n| Embedded Firmware Engineer | 嵌入式固件工程师 | 开发量产级嵌入式系统、RTOS、IoT 固件与硬件控制逻辑 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-embedded-firmware-engineer.md) |\n| Incident Response Commander | 事件响应指挥官 | 处理线上事故、复盘、值班机制与应急准备建设 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-incident-response-commander.md) |\n| Solidity Smart Contract Engineer | Solidity 智能合约工程师 | 开发安全且低 Gas 成本的 EVM 合约与 DeFi 协议 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-solidity-smart-contract-engineer.md) |\n| Technical Writer | 技术写作工程师 | 撰写开发者文档、API 参考、教程与技术说明 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-technical-writer.md) |\n| Threat Detection Engineer | 威胁检测工程师 | 建设 SIEM 规则、威胁狩猎与 ATT&CK 映射能力 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-threat-detection-engineer.md) |\n| WeChat Mini Program Developer | 微信小程序开发工程师 | 开发微信生态应用、小程序与支付集成 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-wechat-mini-program-developer.md) |\n| Code Reviewer | 代码审查工程师 | 做 PR 审查、质量把关、安全检查与可维护性评估 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-code-reviewer.md) |\n| Database Optimizer | 数据库优化工程师 | 处理 PostgreSQL/MySQL 调优、慢查询、索引与迁移规划 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-database-optimizer.md) |\n| Git Workflow Master | Git 工作流专家 | 设计分支策略、整理历史、规范提交与 CI 友好流程 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-git-workflow-master.md) |\n| Software Architect | 软件架构师 | 进行系统设计、领域建模、架构演进与权衡分析 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-software-architect.md) |\n| SRE | 站点可靠性工程师 | 建设 SLO、可观测性、容量规划与稳定性治理 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-sre.md) |\n| AI Data Remediation Engineer | AI 数据修复工程师 | 在零数据丢失前提下批量修复问题数据与自愈管道 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-ai-data-remediation-engineer.md) |\n| Data Engineer | 数据工程师 | 搭建数据管道、湖仓、ETL/ELT 与数据基础设施 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-data-engineer.md) |\n| Feishu Integration Developer | 飞书集成开发工程师 | 开发飞书/Lark 机器人、开放平台集成与流程自动化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/engineering/engineering-feishu-integration-developer.md) |\n\n## 设计（Design）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| UI Designer | UI 设计师 | 做界面视觉设计、组件库与设计系统建设 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/design/design-ui-designer.md) |\n| UX Researcher | 用户体验研究员 | 开展用户研究、可用性测试与行为洞察 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/design/design-ux-researcher.md) |\n| UX Architect | 用户体验架构师 | 搭建设计到实现的技术基础、CSS 体系与实现规范 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/design/design-ux-architect.md) |\n| Brand Guardian | 品牌守护者 | 制定品牌策略、视觉识别与一致性规范 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/design/design-brand-guardian.md) |\n| Visual Storyteller | 视觉叙事设计师 | 制作品牌叙事、视觉故事与多媒体表达 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/design/design-visual-storyteller.md) |\n| Whimsy Injector | 趣味体验注入师 | 为产品加入恰到好处的惊喜、微交互与品牌个性 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/design/design-whimsy-injector.md) |\n| Image Prompt Engineer | 图像提示词工程师 | 为 Midjourney、DALL·E、Stable Diffusion 设计高质量出图提示词 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/design/design-image-prompt-engineer.md) |\n| Inclusive Visuals Specialist | 包容性视觉专家 | 生成具有真实代表性、降低偏见的图像与视频素材 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/design/design-inclusive-visuals-specialist.md) |\n\n## 付费媒体（Paid Media）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| PPC Campaign Strategist | PPC 广告策略师 | 搭建与优化 Google/Microsoft/Amazon Ads 账户结构、预算与投放 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/paid-media/paid-media-ppc-strategist.md) |\n| Search Query Analyst | 搜索词分析师 | 清理浪费流量、扩展关键词并优化搜索意图匹配 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/paid-media/paid-media-search-query-analyst.md) |\n| Paid Media Auditor | 付费媒体审计师 | 做广告账户接管审计、季度体检与竞品评估 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/paid-media/paid-media-auditor.md) |\n| Tracking & Measurement Specialist | 追踪与归因专家 | 处理 GTM、GA4、转化追踪、CAPI 与平台迁移 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/paid-media/paid-media-tracking-specialist.md) |\n| Ad Creative Strategist | 广告创意策略师 | 策划 RSA、Meta、PMax 创意测试、上新与疲劳刷新 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/paid-media/paid-media-creative-strategist.md) |\n| Programmatic & Display Buyer | 程序化与展示广告投手 | 做 GDN、DSP、ABM 展示广告规划与媒体合作 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/paid-media/paid-media-programmatic-buyer.md) |\n| Paid Social Strategist | 付费社媒策略师 | 负责 Meta、LinkedIn、TikTok 等平台的社媒广告策略 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/paid-media/paid-media-paid-social-strategist.md) |\n\n## 销售（Sales）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| Outbound Strategist | 外呼拓客策略师 | 基于信号研究做外联、序列设计与目标客户开发 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/sales/sales-outbound-strategist.md) |\n| Discovery Coach | 需求挖掘教练 | 准备 discovery call、资格判断与销售提问结构训练 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/sales/sales-discovery-coach.md) |\n| Deal Strategist | 商机策略师 | 做 MEDDPICC 资格审查、竞争定位与赢单策略规划 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/sales/sales-deal-strategist.md) |\n| Sales Engineer | 销售工程师 | 负责售前演示、POC 范围界定与技术答疑 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/sales/sales-engineer.md) |\n| Proposal Strategist | 方案书策略师 | 撰写更有说服力的 RFP/投标/提案材料 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/sales/sales-proposal-strategist.md) |\n| Pipeline Analyst | 销售管道分析师 | 审查 pipeline 健康度、预测准确性与 RevOps 指标 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/sales/sales-pipeline-analyst.md) |\n| Account Strategist | 客户经营策略师 | 做客户扩展、QBR 规划、利益相关者地图与 NRR 增长 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/sales/sales-account-strategist.md) |\n| Sales Coach | 销售教练 | 做销售辅导、通话复盘、管道评审与团队提升 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/sales/sales-coach.md) |\n\n## 市场（Marketing）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| Growth Hacker | 增长黑客 | 做拉新、裂变、实验设计与转化优化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-growth-hacker.md) |\n| Content Creator | 内容创作者 | 制定内容策略、写作、品牌叙事与多平台内容产出 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-content-creator.md) |\n| Twitter Engager | Twitter 互动运营 | 负责 Twitter/X 实时互动、专业影响力与社交传播 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-twitter-engager.md) |\n| TikTok Strategist | TikTok 策略师 | 做短视频增长、内容机制适配与算法优化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-tiktok-strategist.md) |\n| Instagram Curator | Instagram 策展人 | 负责视觉叙事、社区经营与内容审美体系 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-instagram-curator.md) |\n| Reddit Community Builder | Reddit 社区建设者 | 以社区价值为导向建立信任并开展真实互动 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-reddit-community-builder.md) |\n| App Store Optimizer | 应用商店优化师 | 做 ASO、转化率提升与应用市场增长 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-app-store-optimizer.md) |\n| Social Media Strategist | 社交媒体策略师 | 统筹多平台社媒策略与整合营销活动 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-social-media-strategist.md) |\n| Xiaohongshu Specialist | 小红书运营专家 | 面向小红书做生活方式内容、审美表达与平台增长 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-xiaohongshu-specialist.md) |\n| WeChat Official Account Manager | 微信公众号运营经理 | 负责公众号内容、订阅者互动与转化运营 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-wechat-official-account.md) |\n| Zhihu Strategist | 知乎策略师 | 做问答型内容布局、权威建设与线索获取 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-zhihu-strategist.md) |\n| Baidu SEO Specialist | 百度 SEO 专家 | 面向中国搜索生态做百度排名优化与合规运营 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-baidu-seo-specialist.md) |\n| Bilibili Content Strategist | B 站内容策略师 | 基于 B 站社区文化做内容增长与用户经营 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-bilibili-content-strategist.md) |\n| Book Co-Author | 图书联合作者 | 用于图书共创、内容结构搭建与长篇知识产品写作 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-book-co-author.md) |\n| Carousel Growth Engine | 轮播内容增长引擎 | 专门制作高传播性的轮播帖内容以带动曝光与转化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-carousel-growth-engine.md) |\n| China Ecommerce Operator | 中国电商运营专家 | 负责中国电商平台的店铺运营、活动与转化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-china-ecommerce-operator.md) |\n| Cross-Border Ecommerce | 跨境电商策略师 | 用于跨境渠道、选品、站点增长与国际电商运营 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-cross-border-ecommerce.md) |\n| Douyin Strategist | 抖音策略师 | 负责抖音短视频内容增长与平台运营 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-douyin-strategist.md) |\n| Kuaishou Strategist | 快手策略师 | 负责快手平台内容、增长与用户运营 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-kuaishou-strategist.md) |\n| LinkedIn Content Creator | LinkedIn 内容创作者 | 为 LinkedIn 账号建立专业内容与品牌影响力 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-linkedin-content-creator.md) |\n| Livestream Commerce Coach | 直播电商教练 | 训练主播、优化直播间与提升直播转化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-livestream-commerce-coach.md) |\n| Podcast Strategist | 播客策略师 | 负责播客栏目策划、分发优化与节目增长 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-podcast-strategist.md) |\n| Private Domain Operator | 私域运营专家 | 搭建企微/私域社群与用户沉淀转化体系 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-private-domain-operator.md) |\n| SEO Specialist | SEO 专家 | 做通用搜索优化、关键词布局与自然流量增长 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-seo-specialist.md) |\n| Short-Video Editing Coach | 短视频剪辑教练 | 指导短视频后期制作、平台规格与素材优化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-short-video-editing-coach.md) |\n| Weibo Strategist | 微博策略师 | 负责微博热点运营、粉丝互动与增长 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-weibo-strategist.md) |\n| AI Citation Strategist | AI 引用策略师 | 提升品牌在 ChatGPT、Claude、Gemini、Perplexity 等 AI 中的可见度 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/marketing/marketing-ai-citation-strategist.md) |\n\n## 产品（Product）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| Sprint Prioritizer | 冲刺优先级规划师 | 做 Sprint 规划、资源分配与待办优先级管理 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/product/product-sprint-prioritizer.md) |\n| Trend Researcher | 趋势研究员 | 做市场情报、竞品分析与机会判断 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/product/product-trend-researcher.md) |\n| Feedback Synthesizer | 反馈洞察整合师 | 汇总用户反馈、提炼洞察并形成产品优先级 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/product/product-feedback-synthesizer.md) |\n| Behavioral Nudge Engine | 行为助推引擎 | 利用行为心理学设计提升动机与参与度的机制 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/product/product-behavioral-nudge-engine.md) |\n| Product Manager | 产品经理 | 负责产品发现、PRD、路线图、GTM 与结果衡量 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/product/product-manager.md) |\n\n## 项目管理（Project Management）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| Studio Producer | 工作室制片人 | 负责多项目统筹、资源分配与战略对齐 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/project-management/project-management-studio-producer.md) |\n| Project Shepherd | 项目护航经理 | 做跨团队协同、排期推进与干系人管理 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/project-management/project-management-project-shepherd.md) |\n| Studio Operations | 工作室运营经理 | 优化日常流程、团队效率与运营支持 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/project-management/project-management-studio-operations.md) |\n| Experiment Tracker | 实验追踪师 | 管理 A/B 测试、假设验证与实验进展 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/project-management/project-management-experiment-tracker.md) |\n| Senior Project Manager | 高级项目经理 | 把需求拆成任务、控制范围并推进落地 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/project-management/project-manager-senior.md) |\n| Jira Workflow Steward | Jira 工作流管理员 | 建立 Jira 与 Git 联动、追踪规范与交付纪律 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/project-management/project-management-jira-workflow-steward.md) |\n\n## 测试（Testing）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| Evidence Collector | 证据采集测试师 | 基于截图与可视化证据做 UI 验证与缺陷记录 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/testing/testing-evidence-collector.md) |\n| Reality Checker | 上线现实校验师 | 做上线前质量认证、发布把关与就绪判断 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/testing/testing-reality-checker.md) |\n| Test Results Analyzer | 测试结果分析师 | 分析测试输出、覆盖率与质量指标 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/testing/testing-test-results-analyzer.md) |\n| Performance Benchmarker | 性能基准测试师 | 做性能压测、速度测试与调优基线建立 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/testing/testing-performance-benchmarker.md) |\n| API Tester | API 测试工程师 | 验证接口、集成流程与接口质量 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/testing/testing-api-tester.md) |\n| Tool Evaluator | 工具评估师 | 评估软件工具选型、适配性与技术决策 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/testing/testing-tool-evaluator.md) |\n| Workflow Optimizer | 流程优化师 | 识别流程低效点并提出自动化与效率优化方案 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/testing/testing-workflow-optimizer.md) |\n| Accessibility Auditor | 无障碍审计师 | 做 WCAG 审计、读屏器测试与包容性验证 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/testing/testing-accessibility-auditor.md) |\n\n## 支持（Support）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| Support Responder | 客户支持专员 | 处理用户问题、客户支持与服务体验优化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/support/support-support-responder.md) |\n| Analytics Reporter | 分析报告专员 | 制作仪表盘、KPI 跟踪与商业分析报告 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/support/support-analytics-reporter.md) |\n| Finance Tracker | 财务跟踪专员 | 做预算、现金流、经营表现与财务分析 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/support/support-finance-tracker.md) |\n| Infrastructure Maintainer | 基础设施维护工程师 | 维护系统稳定性、性能与运维监控 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/support/support-infrastructure-maintainer.md) |\n| Legal Compliance Checker | 法务合规检查员 | 审查合规要求、法规风险与法律问题 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/support/support-legal-compliance-checker.md) |\n| Executive Summary Generator | 高管摘要生成器 | 为管理层输出决策摘要与战略沟通材料 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/support/support-executive-summary-generator.md) |\n\n## 空间计算（Spatial Computing）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| XR Interface Architect | XR 界面架构师 | 设计 AR/VR/XR 的交互与空间体验 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/spatial-computing/xr-interface-architect.md) |\n| macOS Spatial/Metal Engineer | macOS 空间计算/Metal 工程师 | 开发 macOS/Vision Pro 高性能 3D 与空间计算应用 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/spatial-computing/macos-spatial-metal-engineer.md) |\n| XR Immersive Developer | XR 沉浸式开发者 | 开发基于 WebXR 的浏览器沉浸式体验 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/spatial-computing/xr-immersive-developer.md) |\n| XR Cockpit Interaction Specialist | XR 座舱交互专家 | 设计沉浸式控制台、座舱式控制系统与交互布局 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/spatial-computing/xr-cockpit-interaction-specialist.md) |\n| visionOS Spatial Engineer | visionOS 空间工程师 | 开发 Apple Vision Pro 与 visionOS 空间应用 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/spatial-computing/visionos-spatial-engineer.md) |\n| Terminal Integration Specialist | 终端集成专家 | 构建 CLI 工具、终端工作流与开发者工具整合 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/spatial-computing/terminal-integration-specialist.md) |\n\n## 专项（Specialized）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| Agents Orchestrator | 多 Agent 编排师 | 在复杂项目中协调多个 agent 协作 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/agents-orchestrator.md) |\n| LSP/Index Engineer | LSP/索引工程师 | 开发语言服务、代码智能与语义索引系统 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/lsp-index-engineer.md) |\n| Sales Data Extraction Agent | 销售数据提取 Agent | 从表格中抽取销售指标、MTD/YTD/年终数据 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/sales-data-extraction-agent.md) |\n| Data Consolidation Agent | 数据整合 Agent | 汇总销售与业务数据，形成区域或团队报表 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/data-consolidation-agent.md) |\n| Report Distribution Agent | 报告分发 Agent | 自动按区域或对象分发报表与周期性输出 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/report-distribution-agent.md) |\n| Agentic Identity & Trust Architect | Agent 身份与信任架构师 | 设计多 Agent 身份、认证、授权与审计体系 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/agentic-identity-trust.md) |\n| Identity Graph Operator | 身份图谱运营师 | 解决实体去重、合并建议与跨 Agent 身份一致性 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/identity-graph-operator.md) |\n| Accounts Payable Agent | 应付账款 Agent | 执行付款、供应商管理与支付审计流程 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/accounts-payable-agent.md) |\n| Blockchain Security Auditor | 区块链安全审计师 | 审计智能合约漏洞与链上安全风险 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/blockchain-security-auditor.md) |\n| Compliance Auditor | 合规审计师 | 指导组织通过 SOC 2、ISO 27001、HIPAA、PCI-DSS 等认证 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/compliance-auditor.md) |\n| Cultural Intelligence Strategist | 文化智能策略师 | 确保产品与内容跨文化表达自然、避免文化排斥 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/specialized-cultural-intelligence-strategist.md) |\n| Developer Advocate | 开发者布道师 | 连接产品与开发者社区，做 DX 与开发者内容 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/specialized-developer-advocate.md) |\n| Model QA Specialist | 模型质量保障专家 | 做机器学习模型审计、特征分析与可解释性 QA | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/specialized-model-qa.md) |\n| ZK Steward | Zettelkasten 知识管家 | 建设互相关联、可验证的知识库与笔记系统 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/zk-steward.md) |\n| MCP Builder | MCP 构建师 | 开发 Model Context Protocol 服务与 Agent 工具扩展 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/specialized-mcp-builder.md) |\n| Document Generator | 文档生成专家 | 用代码生成 PDF、PPTX、DOCX、XLSX 等专业文档 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/specialized-document-generator.md) |\n| Automation Governance Architect | 自动化治理架构师 | 治理 n8n/自动化工作流的风险、审计与规则 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/automation-governance-architect.md) |\n| Corporate Training Designer | 企业培训设计师 | 设计企业培训体系、课程与学习项目 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/corporate-training-designer.md) |\n| Government Digital Presales Consultant | 政务数字化售前顾问 | 服务中国 ToG 数字化转型方案与投标场景 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/government-digital-presales-consultant.md) |\n| Healthcare Marketing Compliance | 医疗营销合规专家 | 审查中国医疗健康营销的监管与广告合规 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/healthcare-marketing-compliance.md) |\n| Recruitment Specialist | 招聘专家 | 负责人才招聘、寻源与招聘流程设计 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/recruitment-specialist.md) |\n| Study Abroad Advisor | 留学规划顾问 | 负责美英加澳等国家的留学申请与规划 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/study-abroad-advisor.md) |\n| Supply Chain Strategist | 供应链策略师 | 做供应链优化、采购与规划策略 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/supply-chain-strategist.md) |\n| Workflow Architect | 工作流架构师 | 在编码前完整梳理业务流程路径与系统规格 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/specialized-workflow-architect.md) |\n| Salesforce Architect | Salesforce 架构师 | 设计多云 Salesforce 架构、治理与集成方案 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/specialized-salesforce-architect.md) |\n| French Consulting Market Navigator | 法国咨询市场导航顾问 | 帮助 IT 自由顾问理解法国 ESN/SI/portage 市场机制 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/specialized-french-consulting-market.md) |\n| Korean Business Navigator | 韩国商务导航顾问 | 帮助外籍专业人士理解韩国商务文化与关系机制 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/specialized/specialized-korean-business-navigator.md) |\n\n## 游戏开发（Game Development）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| Game Designer | 游戏设计师 | 设计核心玩法、经济系统、成长循环与 GDD | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/game-designer.md) |\n| Level Designer | 关卡设计师 | 设计关卡布局、节奏、遭遇与环境叙事 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/level-designer.md) |\n| Technical Artist | 技术美术 | 处理着色器、VFX、LOD 与美术到引擎的性能优化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/technical-artist.md) |\n| Game Audio Engineer | 游戏音频工程师 | 设计交互式音频、动态音乐与空间音频系统 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/game-audio-engineer.md) |\n| Narrative Designer | 叙事设计师 | 编写分支剧情、世界观与对话系统 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/narrative-designer.md) |\n| Unity Architect | Unity 架构师 | 处理大型 Unity 项目、数据驱动架构与 ECS 性能 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/unity/unity-architect.md) |\n| Unity Shader Graph Artist | Unity Shader Graph 美术师 | 制作 Unity 自定义材质、特效与后处理着色器 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/unity/unity-shader-graph-artist.md) |\n| Unity Multiplayer Engineer | Unity 多人联机工程师 | 开发 Unity 在线游戏、预测同步与联网服务集成 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/unity/unity-multiplayer-engineer.md) |\n| Unity Editor Tool Developer | Unity 编辑器工具开发者 | 开发 Unity Editor 工具、流程自动化与内容校验 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/unity/unity-editor-tool-developer.md) |\n| Unreal Systems Engineer | Unreal 系统工程师 | 开发复杂 Unreal 玩法系统、GAS 与引擎级 C++ 能力 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/unreal-engine/unreal-systems-engineer.md) |\n| Unreal Technical Artist | Unreal 技术美术 | 负责 Unreal 材质、Niagara、PCG 与程序化内容 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/unreal-engine/unreal-technical-artist.md) |\n| Unreal Multiplayer Architect | Unreal 多人架构师 | 开发 Unreal 联机复制、专服与权威式多人架构 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/unreal-engine/unreal-multiplayer-architect.md) |\n| Unreal World Builder | Unreal 世界构建师 | 构建开放世界、流式加载、地形与 World Partition | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/unreal-engine/unreal-world-builder.md) |\n| Godot Gameplay Scripter | Godot 玩法脚本工程师 | 开发 Godot 玩法系统、场景组合与高性能 GDScript | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/godot/godot-gameplay-scripter.md) |\n| Godot Multiplayer Engineer | Godot 多人联机工程师 | 开发 Godot 在线多人、场景复制与权威式同步 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/godot/godot-multiplayer-engineer.md) |\n| Godot Shader Developer | Godot 着色器开发者 | 开发 Godot 材质、2D/3D 特效、后处理与计算着色器 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/godot/godot-shader-developer.md) |\n| Blender Addon Engineer | Blender 插件工程师 | 开发 Blender 插件、资源校验工具与导出流程 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/blender/blender-addon-engineer.md) |\n| Roblox Systems Scripter | Roblox 系统脚本工程师 | 开发 Roblox 安全的客户端/服务端系统与数据持久化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/roblox-studio/roblox-systems-scripter.md) |\n| Roblox Experience Designer | Roblox 体验设计师 | 设计 Roblox 循环、留存、内购与新手引导 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/roblox-studio/roblox-experience-designer.md) |\n| Roblox Avatar Creator | Roblox 角色资产创作者 | 开发 Roblox UGC、配件、Avatar 商店与角色定制 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/game-development/roblox-studio/roblox-avatar-creator.md) |\n\n## 学术（Academic）\n\n| Agent | 中文 | When to Use | 链接 |\n| --- | --- | --- | --- |\n| Anthropologist | 人类学家 | 构建文化体系、亲属关系、仪式与社会结构 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/academic/academic-anthropologist.md) |\n| Geographer | 地理学家 | 构建真实的地形、聚落、气候与空间分布 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/academic/academic-geographer.md) |\n| Historian | 历史学家 | 验证历史合理性并丰富时代背景与物质文化 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/academic/academic-historian.md) |\n| Narratologist | 叙事学家 | 用叙事理论分析与改进故事结构 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/academic/academic-narratologist.md) |\n| Psychologist | 心理学家 | 打造符合研究基础的人物动机与心理模式 | [链接](https://github.com/msitarzewski/agency-agents/blob/main/academic/academic-psychologist.md) |"</script>
+  <script>
+    const markdownSource = JSON.parse(document.getElementById('markdown-source').textContent);
+
+    function stripMarkdownLinks(value) {
+      return value.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1').trim();
+    }
+
+    function splitRow(line) {
+      return line
+        .trim()
+        .replace(/^\|/, '')
+        .replace(/\|$/, '')
+        .split('|')
+        .map((cell) => cell.trim());
+    }
+
+    function parseStandaloneLink(value) {
+      const match = value.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+      if (!match) {
+        return null;
+      }
+      return { label: match[1], href: match[2] };
+    }
+
+    function parseMarkdown(markdown) {
+      const lines = markdown.split('\n');
+      const sections = [];
+      let currentSection = null;
+
+      for (const line of lines) {
+        if (line.startsWith('## ')) {
+          currentSection = {
+            title: line.slice(3).trim(),
+            headers: [],
+            items: [],
+          };
+          sections.push(currentSection);
+          continue;
+        }
+
+        if (!currentSection || !line.startsWith('| ')) {
+          continue;
+        }
+
+        if (line.startsWith('| ---')) {
+          continue;
+        }
+
+        const row = splitRow(line);
+        if (!currentSection.headers.length) {
+          currentSection.headers = row;
+          continue;
+        }
+
+        currentSection.items.push(row);
+      }
+
+      return sections;
+    }
+
+    function createId(index) {
+      return `section-${index + 1}`;
+    }
+
+    function render() {
+      const sections = parseMarkdown(markdownSource);
+      const quickNav = document.getElementById('quickNav');
+      const sectionsRoot = document.getElementById('sections');
+      const totalAgents = sections.reduce((sum, section) => sum + section.items.length, 0);
+
+      document.getElementById('sectionCount').textContent = `${sections.length} 个分类`;
+      document.getElementById('agentCount').textContent = `${totalAgents} 个岗位`;
+
+      sections.forEach((section, sectionIndex) => {
+        const sectionId = createId(sectionIndex);
+        const navLink = document.createElement('a');
+        navLink.href = `#${sectionId}`;
+        navLink.textContent = section.title;
+        quickNav.appendChild(navLink);
+
+        const sectionBlock = document.createElement('section');
+        sectionBlock.className = 'section-block';
+        sectionBlock.id = sectionId;
+
+        const head = document.createElement('div');
+        head.className = 'section-head';
+        head.innerHTML = `
+          <h2>${section.title}</h2>
+          <p class="section-note">${section.items.length} 个岗位</p>
+        `;
+        sectionBlock.appendChild(head);
+
+        const grid = document.createElement('div');
+        grid.className = 'agent-grid';
+
+        section.items.forEach((item) => {
+          const card = document.createElement('article');
+          card.className = 'agent-card';
+
+          const title = document.createElement('h3');
+          title.textContent = stripMarkdownLinks(item[0]);
+          card.appendChild(title);
+
+          const meta = document.createElement('dl');
+          meta.className = 'agent-meta';
+
+          section.headers.slice(1).forEach((header, index) => {
+            const value = item[index + 1] || '';
+            const label = stripMarkdownLinks(header);
+            const pair = document.createElement('div');
+            const dt = document.createElement('dt');
+            const dd = document.createElement('dd');
+
+            dt.textContent = label;
+            const standaloneLink = parseStandaloneLink(value);
+            if (standaloneLink) {
+              const anchor = document.createElement('a');
+              anchor.href = standaloneLink.href;
+              anchor.target = '_blank';
+              anchor.rel = 'noopener noreferrer';
+              anchor.textContent = standaloneLink.label;
+              dd.appendChild(anchor);
+            } else {
+              dd.textContent = stripMarkdownLinks(value);
+            }
+
+            pair.appendChild(dt);
+            pair.appendChild(dd);
+            meta.appendChild(pair);
+          });
+
+          card.appendChild(meta);
+          grid.appendChild(card);
+        });
+
+        sectionBlock.appendChild(grid);
+        sectionsRoot.appendChild(sectionBlock);
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOUL.md 分享</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Orbitron:wght@500;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg-primary: #050b14;
+      --bg-secondary: #0b1526;
+      --bg-card: rgba(10, 24, 46, 0.78);
+      --text-primary: #eff6ff;
+      --text-secondary: #a9c0de;
+      --brand-red: #ff3e57;
+      --electric-cyan: #1de8ff;
+      --accent: var(--electric-cyan);
+      --accent-2: var(--brand-red);
+      --accent-glow: rgba(39, 229, 255, 0.35);
+      --line: rgba(141, 181, 227, 0.22);
+      --font-display: 'Orbitron', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      --font-body: 'Manrope', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      --page-padding: clamp(1.3rem, 3vw, 2.1rem);
+      --section-gap: clamp(2.8rem, 7vh, 5.4rem);
+      --card-gap: clamp(0.9rem, 1.8vw, 1.3rem);
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.26);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg-primary);
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      background:
+        radial-gradient(120vh 90vh at 82% -12%, rgba(39, 229, 255, 0.12), transparent 62%),
+        radial-gradient(100vh 90vh at -12% 12%, rgba(255, 95, 114, 0.12), transparent 70%),
+        linear-gradient(160deg, var(--bg-primary), #070f1d 42%, #091326 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(transparent 97%, rgba(38, 58, 90, 0.45) 100%),
+        linear-gradient(90deg, transparent 97%, rgba(38, 58, 90, 0.35) 100%);
+      background-size: 28px 28px;
+      opacity: 0.24;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page-shell {
+      width: min(94vw, 1220px);
+      margin: 0 auto;
+      padding: clamp(1.6rem, 4vw, 2.4rem) var(--page-padding) clamp(4rem, 8vw, 6rem);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: clamp(1.6rem, 4vh, 2.3rem);
+      padding: 0.72rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(39, 229, 255, 0.3);
+      background: rgba(12, 27, 49, 0.68);
+      text-decoration: none;
+      color: #dff6ff;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible {
+      border-color: rgba(39, 229, 255, 0.56);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .hero {
+      display: grid;
+      gap: 1.2rem;
+      padding: clamp(1.6rem, 4vw, 2.5rem);
+      border: 1px solid rgba(39, 229, 255, 0.22);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at top right, rgba(29, 232, 255, 0.12), transparent 36%),
+        linear-gradient(180deg, rgba(11, 25, 44, 0.92), rgba(8, 18, 33, 0.9));
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow,
+    .hero-meta span {
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      line-height: 1.12;
+      letter-spacing: 0.02em;
+      text-wrap: balance;
+    }
+
+    h1,
+    h2 {
+      background: linear-gradient(118deg, var(--electric-cyan) 0%, var(--brand-red) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 4rem);
+      max-width: 18ch;
+    }
+
+    h2 {
+      font-size: clamp(1.25rem, 2.8vw, 2.3rem);
+    }
+
+    .hero p,
+    .hero li,
+    .section-note,
+    .agent-meta dt,
+    .agent-meta dd,
+    .footer-note {
+      font-size: clamp(0.94rem, 1.1vw, 1rem);
+      line-height: 1.72;
+    }
+
+    .hero-copy {
+      max-width: 66ch;
+      color: #d8e8fc;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .hero-meta strong {
+      display: inline-flex;
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 0.95rem;
+      color: #eff6ff;
+      font-weight: 600;
+    }
+
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: clamp(2rem, 5vh, 3rem);
+    }
+
+    .quick-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.5rem;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(141, 181, 227, 0.2);
+      background: rgba(10, 24, 46, 0.76);
+      text-decoration: none;
+      color: #d5eaff;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .quick-nav a:hover,
+    .quick-nav a:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(39, 229, 255, 0.46);
+      outline: none;
+    }
+
+    .sections {
+      display: grid;
+      gap: var(--section-gap);
+      margin-top: clamp(2.8rem, 7vh, 4rem);
+    }
+
+    .section-block {
+      display: grid;
+      gap: clamp(1.1rem, 2.4vh, 1.8rem);
+    }
+
+    .section-head {
+      display: grid;
+      gap: 0.48rem;
+    }
+
+    .section-note {
+      color: var(--text-secondary);
+    }
+
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--card-gap);
+    }
+
+    .agent-card {
+      display: grid;
+      gap: 0.9rem;
+      padding: clamp(1rem, 2vw, 1.35rem);
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: var(--bg-card);
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+
+    .agent-card h3 {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: #f2f7ff;
+    }
+
+    .agent-meta {
+      display: grid;
+      gap: 0.78rem;
+      margin: 0;
+    }
+
+    .agent-meta div {
+      display: grid;
+      gap: 0.22rem;
+    }
+
+    .agent-meta dt {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .agent-meta dd {
+      margin: 0;
+      color: #d9e9ff;
+      word-break: break-word;
+    }
+
+    .agent-meta a {
+      color: #8fe4ff;
+      text-decoration-color: rgba(143, 228, 255, 0.54);
+      text-underline-offset: 0.18em;
+      word-break: break-all;
+    }
+
+    .footer-note {
+      margin-top: clamp(3rem, 7vh, 4.6rem);
+      color: rgba(215, 231, 253, 0.7);
+    }
+
+    @media (max-width: 900px) {
+      .agent-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page-shell {
+        width: min(100vw, 100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <a class="back-link" href="openclaw-share.html">← 返回 OpenClaw 分享</a>
+
+    <header class="hero">
+      <span class="eyebrow">OpenClaw 扩展阅读</span>
+      <h1 id="pageTitle">SOUL.md 分享</h1>
+      <p class="hero-copy">按原始 md 分类渲染的长页面版本。保留原角色名、用途说明和外链，只把信息结构改成更适合分享阅读的卡片布局。</p>
+      <div class="hero-meta">
+        <strong id="sectionCount">0 个分类</strong>
+        <strong id="agentCount">0 个角色</strong>
+      </div>
+    </header>
+
+    <nav class="quick-nav" id="quickNav" aria-label="分类导航"></nav>
+    <section class="sections" id="sections"></section>
+    <p class="footer-note">内容按源 md 顺序呈现，文案默认逐句采样，不额外改写。</p>
+  </main>
+
+  <script id="markdown-source" type="application/json">"# SOUL.md\n\n## Productivity（生产力）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Orion | 任务协调、项目管理 | 需要日常优先级、截止日期跟踪和团队对齐时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/productivity/orion/SOUL.md) |\n| Pulse | 分析仪表盘（Mixpanel、Stripe、GA4） | 想要自动化生成每日/每周指标报告时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/productivity/pulse/SOUL.md) |\n| Standup | 每日站会收集、团队总结 | 团队需要异步站会、减少会议时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/productivity/standup/SOUL.md) |\n| Inbox | 邮件分拣、回复草拟、日报摘要 | 收件箱过载、需要优先级处理时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/productivity/inbox/SOUL.md) |\n| Minutes | 会议纪要、行动项跟踪 | 需要自动生成会议纪要和后续跟进时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/productivity/minutes/SOUL.md) |\n| Focus Timer | 番茄钟、深度工作管理 | 需要结构化专注时间和监督时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/productivity/focus-timer/SOUL.md) |\n| Habit Tracker | 习惯打卡、连续记录、问责 | 想做日常签到和习惯追踪时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/productivity/habit-tracker/SOUL.md) |\n\n## Development（开发）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Lens | PR 审查、安全扫描、代码质量 | 想在合并前做自动代码审查时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/code-reviewer/SOUL.md) |\n| Scribe | README、API 文档、代码文档 | 文档落后于代码库时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/docs-writer/SOUL.md) |\n| Trace | 错误分析、根因定位 | 需要更快调试和事故响应时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/bug-hunter/SOUL.md) |\n| Probe | API 测试、健康检查、性能监控 | 需要持续 API 监控和告警时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/api-tester/SOUL.md) |\n| Log | 自动生成 Changelog、发布说明 | 想根据提交记录自动产出 release notes 时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/changelog/SOUL.md) |\n| Dependency Scanner | CVE 扫描、许可证检查、供应链安全 | 需要自动依赖安全审计时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/dependency-scanner/SOUL.md) |\n| PR Merger | 自动合并、冲突检测 | 想在检查通过后自动合并 PR 时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/pr-merger/SOUL.md) |\n| Migration Helper | 数据库迁移、Schema Diff、回滚 | 规划数据库变更并需要安全护栏时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/migration-helper/SOUL.md) |\n| Test Writer | 单元测试生成、覆盖率分析 | 测试覆盖不足、需要补齐时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/test-writer/SOUL.md) |\n| Schema Designer | 自然语言转数据库结构、ERD 输出 | 需要从需求快速设计数据库结构时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/schema-designer/SOUL.md) |\n| Blockchain Analyst ※ | 区块链/链上数据分析 | 需要分析链上交易、地址与趋势时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/blockchain-analyst/SOUL.md) |\n| Ecommerce Dev ※ | 电商功能开发、商店系统实现 | 需要构建或改造电商开发功能时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/ecommerce-dev/SOUL.md) |\n| Game Designer ※ | 游戏机制与玩法设计 | 需要设计游戏玩法、系统或原型时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/game-designer/SOUL.md) |\n| QA Tester ※ | 质量保证测试、回归测试 | 需要系统化做 QA 验证和测试流程时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/qa-tester/SOUL.md) |\n| Script Builder ※ | 自动化脚本编写 | 需要快速生成脚本和小型自动化工具时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/development/script-builder/SOUL.md) |\n\n## Marketing（营销）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Echo | 博客、社媒文案、邮件内容 | 需要跨渠道稳定产出内容时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/echo/SOUL.md) |\n| Buzz | Twitter、LinkedIn、Threads 运营 | 想定时发帖并跟踪互动时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/social-media/SOUL.md) |\n| Rank | SEO 内容、关键词研究（GSC） | 需要基于真实搜索数据写 SEO 内容时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/seo-writer/SOUL.md) |\n| Digest | Newsletter 策划与撰写 | 想做每周简报、但不想手动整理时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/newsletter/SOUL.md) |\n| Scout | 竞品监控、价格情报 | 需要每天跟踪竞争对手动态时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/competitor-watch/SOUL.md) |\n| Reddit Scout | Reddit 监控、回复机会识别 | 想找到相关 Reddit 讨论并参与时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/reddit-scout/SOUL.md) |\n| TikTok Repurposer | 长文转短视频脚本 | 想把长内容改造成短视频时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/tiktok-repurposer/SOUL.md) |\n| Cold Outreach | 潜在客户研究、冷启动邮件 | 需要规模化外联但又不想太机械时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/cold-outreach/SOUL.md) |\n| A/B Test Analyzer | 实验分析、统计显著性 | 正在跑实验、需要明确结果时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/ab-test-analyzer/SOUL.md) |\n| Influencer Finder | KOL 搜索、触达、合作活动 | 想找到并联系相关影响者时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/influencer-finder/SOUL.md) |\n| Brand Monitor | 品牌提及监控、情绪提醒 | 需要知道品牌何时被提及时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/brand-monitor/SOUL.md) |\n| Email Sequence | 多步邮件序列、标题优化 | 需要自动化培育邮件流程时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/email-sequence/SOUL.md) |\n| Content Repurposer | 一稿多发、跨平台复用 | 想把一份内容分发到所有平台时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/content-repurposer/SOUL.md) |\n| Book Writer | 图书写作全流程 | 想从大纲一路写到完整书稿时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/book-writer/SOUL.md) |\n| News Curator | 新闻源扫描、AI 筛选、发布 | 需要自动生成新闻摘要或快报时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/news-curator/SOUL.md) |\n| UGC Video | UGC 风格视频脚本与制作方案 | 需要用户生成内容风格的视频时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/ugc-video/SOUL.md) |\n| Multi-Account Social | 多账号管理、排期发布 | 同时运营多个品牌账号时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/multi-account-social/SOUL.md) |\n| Geo Agent ※ | 地域营销、本地化触达 | 需要做地理区域定向营销时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/geo-agent/SOUL.md) |\n| HackerNews Agent ※ | Hacker News 监控与内容机会发现 | 需要跟踪 Hacker News 热点和讨论时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/hackernews-agent/SOUL.md) |\n| Localization ※ | 内容本地化、多语言适配 | 需要把营销内容适配到多语言市场时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/localization/SOUL.md) |\n| Telemarketer ※ | 电话销售脚本与外呼流程 | 需要电话销售支持与话术设计时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/marketing/telemarketer/SOUL.md) |\n\n## Business（商业）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Radar | 数据分析、业务洞察 | 需要每日业务指标与趋势分析时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/radar/SOUL.md) |\n| Compass | 工单分流、回复草拟、升级处理 | 支持量增长过快时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/compass/SOUL.md) |\n| Pipeline | 线索评分、外联、Pipeline 报告 | 需要自动线索筛选和跟进时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/pipeline/SOUL.md) |\n| Ledger | 支付监控、发票跟踪、MRR | 想实时跟踪收入与付款时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/ledger/SOUL.md) |\n| Sentinel | 流失风险评分、留存动作 | 想在客户流失前提前识别时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/sentinel/SOUL.md) |\n| Personal CRM | 人脉跟踪、跟进提醒 | 容易漏掉联系人跟进时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/personal-crm/SOUL.md) |\n| WhatsApp Business | 多渠道支持、线索资格判断 | 客户主要从 WhatsApp 进入时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/whatsapp-business/SOUL.md) |\n| Meeting Scheduler | 智能排期、时区协调 | 跨时区约会耗费太多时间时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/meeting-scheduler/SOUL.md) |\n| Competitor Pricing | 竞品价格追踪、变动提醒 | 需要每日监控竞品定价变化时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/competitor-pricing/SOUL.md) |\n| SDR Outbound | 线索研究、个性化外联 | 需要自动化外呼销售开发时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/sdr-outbound/SOUL.md) |\n| Deal Forecaster | 销售管道信号、成交概率 | 想做数据驱动的成交预测时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/deal-forecaster/SOUL.md) |\n| Objection Handler | 实时异议处理、销售话术 | 销售需要即时应答客户反对意见时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/business/objection-handler/SOUL.md) |\n\n## Personal（个人）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Atlas | 日程优化、晨间/晚间回顾 | 想建立结构化日常节奏时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/personal/atlas/SOUL.md) |\n| Scroll | 文章摘要、每周阅读 digest | 有阅读积压、需要整理时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/personal/scroll/SOUL.md) |\n| Iron | 训练、营养、进度报告 | 想要一个会持续跟踪的私人教练时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/personal/iron/SOUL.md) |\n| Home Automation | 通过 Telegram 控制智能家居 | 想在聊天里直接控制智能家居时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/personal/home-automation/SOUL.md) |\n| Family Coordinator | 家庭日历、餐食、家务轮值 | 家庭需要共享组织与规划时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/personal/family-coordinator/SOUL.md) |\n| Travel Planner | 行程、航班、酒店、预算 | 需要更聪明的旅行规划时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/personal/travel-planner/SOUL.md) |\n| Journal Prompter | 日记提示、情绪追踪、目标反思 | 想做引导式日记时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/personal/journal-prompter/SOUL.md) |\n\n## DevOps（运维）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Incident Responder | 告警分流、事故协调 | 需要自动化事故响应和升级时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/devops/incident-responder/SOUL.md) |\n| Deploy Guardian | CI/CD 监控、部署状态 | 想收到部署通知与回滚提醒时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/devops/deploy-guardian/SOUL.md) |\n| Infra Monitor | 服务器健康、磁盘、CPU、内存 | 需要主动式服务器监控时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/devops/infra-monitor/SOUL.md) |\n| Log Analyzer | 日志解析、模式检测、异常识别 | 日志太多、需要自动分析时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/devops/log-analyzer/SOUL.md) |\n| Cost Optimizer | 云成本监控、节省建议 | 云账单持续增长、需要优化时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/devops/cost-optimizer/SOUL.md) |\n| Self-Healing Server | 自动重启容器、磁盘清理 | 想让服务器在凌晨自动自愈时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/devops/self-healing-server/SOUL.md) |\n| Raspberry Pi Agent | 轻量边缘部署、低内存优化 | 需要在树莓派或边缘设备部署时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/devops/raspberry-pi-agent/SOUL.md) |\n| Runbook Writer | 运维 Runbook 编写 | 需要为事故响应整理标准流程时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/devops/runbook-writer/SOUL.md) |\n| SLA Monitor | SLA 合规、降级提醒 | 需要跟踪服务可用性承诺时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/devops/sla-monitor/SOUL.md) |\n| Capacity Planner | 基础设施容量预测 | 需要提前规划扩容时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/devops/capacity-planner/SOUL.md) |\n\n## Finance（金融）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Expense Tracker | 支出分类、预算提醒 | 需要自动记账和预算监控时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/finance/expense-tracker/SOUL.md) |\n| Invoice Manager | 发票创建、跟踪、催收 | 发票容易丢失、回款太慢时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/finance/invoice-manager/SOUL.md) |\n| Revenue Analyst | MRR 分析、流失、收入预测 | 想自动生成收入分析和预测时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/finance/revenue-analyst/SOUL.md) |\n| Tax Preparer | 票据整理、抵扣计算 | 税务季来临、需要提前准备时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/finance/tax-preparer/SOUL.md) |\n| Trading Bot | 持仓跟踪、情绪、价格提醒 | 想做自动市场监控和价格预警时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/finance/trading-bot/SOUL.md) |\n| Fraud Detector | 交易异常检测、欺诈提醒 | 需要实时监控欺诈交易时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/finance/fraud-detector/SOUL.md) |\n| Financial Forecaster | 历史数据财务预测 | 需要数据驱动的财务预测时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/finance/financial-forecaster/SOUL.md) |\n| Portfolio Rebalancer | 资产偏离分析、再平衡建议 | 投资组合需要周期性再平衡时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/finance/portfolio-rebalancer/SOUL.md) |\n| Accounts Payable | 应付账款、审批流、付款 | AP 流程需要自动化提速时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/finance/accounts-payable/SOUL.md) |\n| Copy Trader | 跟单、风险控制 | 想在预测市场做自动跟单时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/finance/copy-trader/SOUL.md) |\n\n## Education（教育）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Tutor | 概念讲解、练习题 | 需要一个 24/7 有耐心的导师时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/education/tutor/SOUL.md) |\n| Quiz Maker | 题目生成、成绩跟踪 | 想从学习资料自动出题时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/education/quiz-maker/SOUL.md) |\n| Study Planner | 学习计划、提醒 | 需要结构化的学习安排时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/education/study-planner/SOUL.md) |\n| Research Assistant | 论文搜索、摘要、引用 | 做研究、需要找论文和整理材料时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/education/research-assistant/SOUL.md) |\n| Language Tutor | 语言学习、口语练习 | 想每天在手机上练外语时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/education/language-tutor/SOUL.md) |\n| Curriculum Designer | 课程大纲、学习目标 | 需要设计课程与评估标准时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/education/curriculum-designer/SOUL.md) |\n| Essay Grader | 作文反馈、量表评分 | 需要大规模一致性评作文时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/education/essay-grader/SOUL.md) |\n| Flashcard Generator | 间隔重复卡片生成 | 想把笔记自动变成记忆卡片时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/education/flashcard-generator/SOUL.md) |\n\n## Healthcare（医疗健康）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Wellness Coach | 每日健康提醒、情绪与习惯追踪 | 想要日常健康督促时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/healthcare/wellness-coach/SOUL.md) |\n| Meal Planner | 餐食计划、营养跟踪 | 需要按目标制定周餐计划时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/healthcare/meal-planner/SOUL.md) |\n| Workout Tracker | 训练计划、进度跟踪 | 想要会随进度调整的训练方案时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/healthcare/workout-tracker/SOUL.md) |\n| Symptom Triage | 症状评估、紧急程度判断 | 患者需要初步症状分诊时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/healthcare/symptom-triage/SOUL.md) |\n| Clinical Notes | SOAP 格式临床记录 | 需要把就诊内容整理为结构化病历时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/healthcare/clinical-notes/SOUL.md) |\n| Medication Checker | 药物相互作用、剂量提醒 | 需要核查用药安全与相互作用时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/healthcare/medication-checker/SOUL.md) |\n| Patient Intake | 入院/接诊登记、保险核验 | 患者接诊流程需要提速时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/healthcare/patient-intake/SOUL.md) |\n\n## Legal（法律）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Contract Reviewer | 合同审查、风险条款识别 | 审合同、需要第二双眼睛时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/legal/contract-reviewer/SOUL.md) |\n| Compliance Checker | 合规监控、截止日期跟踪 | 需要持续跟踪监管要求时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/legal/compliance-checker/SOUL.md) |\n| Policy Writer | 内部制度、服务条款 | 需要起草或更新公司政策时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/legal/policy-writer/SOUL.md) |\n| Patent Analyzer | 专利权利要求、现有技术、侵权风险 | 需要专利布局分析与风险判断时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/legal/patent-analyzer/SOUL.md) |\n| Legal Brief Writer | 法律摘要、动议、备忘录 | 需要根据案情草拟法律文件时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/legal/legal-brief-writer/SOUL.md) |\n| NDA Generator | 定制 NDA、保密协议 | 需要快速生成 NDA 时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/legal/nda-generator/SOUL.md) |\n\n## HR（人力资源）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Recruiter | 简历筛选、面试安排 | 招聘中需要更快筛候选人时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/hr/recruiter/SOUL.md) |\n| Onboarding | 新员工入职、培训指引 | 新员工需要引导式入职体验时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/hr/onboarding/SOUL.md) |\n| Performance Reviewer | 反馈收集、绩效总结 | 绩效考核季需要结构化反馈时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/hr/performance-reviewer/SOUL.md) |\n| Resume Screener | 简历评分、候选人排序 | 申请量太大、需要快速筛选时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/hr/resume-screener/SOUL.md) |\n| Exit Interview | 离职访谈、留任洞察 | 想弄清员工离职原因时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/hr/exit-interview/SOUL.md) |\n| Benefits Advisor | 福利答疑、政策指引 | 员工频繁咨询福利政策时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/hr/benefits-advisor/SOUL.md) |\n| Compensation Benchmarker | 薪酬数据、市场对标 | 需要数据驱动的薪酬建议时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/hr/compensation-benchmarker/SOUL.md) |\n\n## Creative（创意）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Brand Designer | 品牌指南、配色方案 | 在做品牌建设或品牌升级时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/creative/brand-designer/SOUL.md) |\n| Video Scripter | 视频脚本、大纲、镜头列表 | 需要视频内容但不想自己写脚本时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/creative/video-scripter/SOUL.md) |\n| Podcast Producer | 播客策划、Show Notes | 做播客并需要策划支持时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/creative/podcast-producer/SOUL.md) |\n| UX Researcher | 用户调查、反馈分析 | 需要用户洞察但没有专职研究员时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/creative/ux-researcher/SOUL.md) |\n| Copywriter | 广告文案、落地页、邮件序列 | 需要快速产出转化型文案时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/creative/copywriter/SOUL.md) |\n| Thumbnail Designer | YouTube/社媒缩略图创意 | 需要更吸睛的缩略图思路时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/creative/thumbnail-designer/SOUL.md) |\n| Ad Copywriter | Google、Meta、LinkedIn 广告变体 | 需要跨平台 A/B 测试广告文案时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/creative/ad-copywriter/SOUL.md) |\n| Storyboard Writer | 分镜、镜头脚本 | 需要视频前期分镜规划时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/creative/storyboard-writer/SOUL.md) |\n| Audio Producer ※ | 音频制作、音频内容策划 | 需要音频内容制作或后期方案时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/creative/audio-producer/SOUL.md) |\n| Proofreader ※ | 校对、润色、语言修订 | 需要发布前的文字校对与改写时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/creative/proofreader/SOUL.md) |\n\n## Security（安全）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Vuln Scanner | 漏洞扫描、修复优先级 | 需要持续安全扫描时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/security/vuln-scanner/SOUL.md) |\n| Access Auditor | 权限审计、超权识别 | 需要审查谁拥有什么权限时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/security/access-auditor/SOUL.md) |\n| Threat Monitor | 威胁情报监控、相关告警 | 想及早获知针对自身技术栈的威胁时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/security/threat-monitor/SOUL.md) |\n| Incident Logger | 安全事件记录 | 需要做结构化事件追踪和复盘时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/security/incident-logger/SOUL.md) |\n| Security Hardener | [SOUL.md](http://soul.md/) 审计、网关加固 | 想加固 agent 与网关配置时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/security/security-hardener/SOUL.md) |\n| Phishing Detector | 钓鱼邮件分析、URL 扫描 | 团队需要自动识别钓鱼攻击时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/security/phishing-detector/SOUL.md) |\n\n## E-Commerce（电商）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Product Lister | 商品上架优化、SEO 标题 | 需要优化各平台商品 listing 时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/ecommerce/product-lister/SOUL.md) |\n| Review Responder | 评论自动回复 | 需要快速一致地回复客户评价时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/ecommerce/review-responder/SOUL.md) |\n| Inventory Tracker | 库存监控、补货提醒 | 需要避免断货和积压时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/ecommerce/inventory-tracker/SOUL.md) |\n| Pricing Optimizer | 动态定价、竞争监控 | 想让定价随市场变化自动调整时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/ecommerce/pricing-optimizer/SOUL.md) |\n| Abandoned Cart | 弃单召回、挽回序列 | 因购物车放弃而流失销售时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/ecommerce/abandoned-cart/SOUL.md) |\n| Dropshipping Researcher | 24/7 选品、供应商分析 | 需要持续做 dropshipping 选品时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/ecommerce/dropshipping-researcher/SOUL.md) |\n\n## Data（数据）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| ETL Pipeline | 数据管道监控、失败告警、重试 | 数据管道需要自动监控时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/data/etl-pipeline/SOUL.md) |\n| Data Cleaner | 质量检查、去重、标准化 | 数据很脏、需要自动清洗时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/data/data-cleaner/SOUL.md) |\n| Report Generator | 多源自动报告 | 干系人需要定期报告但不想手工做时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/data/report-generator/SOUL.md) |\n| SQL Assistant | SQL 辅助、查询优化、Schema 探索 | 需要 SQL 副驾处理复杂查询时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/data/sql-assistant/SOUL.md) |\n| Dashboard Builder | 指标仪表盘搭建、维护 | 需要自动创建和更新看板时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/data/dashboard-builder/SOUL.md) |\n| Anomaly Detector | 指标异常检测、统计告警 | 需要自动识别异常数据模式时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/data/anomaly-detector/SOUL.md) |\n| Survey Analyzer | 情绪分析、主题提取、NPS 拆解 | 问卷数据需要结构化分析时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/data/survey-analyzer/SOUL.md) |\n| Data Entry ※ | 数据录入、结构化整理 | 需要把非结构化信息录入成表格时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/data/data-entry/SOUL.md) |\n| Transcription ※ | 转录、语音转文本 | 需要把音视频内容转成文本时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/data/transcription/SOUL.md) |\n\n## SaaS\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Onboarding Flow | 用户引导、激活跟踪 | 新用户迟迟没有达到“aha moment”时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/saas/onboarding-flow/SOUL.md) |\n| Feature Request | 需求收集、优先级、投票 | 功能诉求分散在多个渠道时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/saas/feature-request/SOUL.md) |\n| Churn Prevention | 主动式流失预防、健康评分 | 用户流失但原因不明时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/saas/churn-prevention/SOUL.md) |\n| Usage Analytics | 使用行为、功能采用跟踪 | 想了解用户如何真正使用产品时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/saas/usage-analytics/SOUL.md) |\n| Release Notes | 从 Git 和 PR 自动生成发布说明 | 没人愿意手写 release notes 时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/saas/release-notes/SOUL.md) |\n\n## Real Estate（房地产）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Listing Scout | 房源监控、降价提醒 | 想第一时间收到新房源和降价提醒时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/real-estate/listing-scout/SOUL.md) |\n| Market Analyzer | 市场分析、可比房报告 | 需要自动房产市场分析时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/real-estate/market-analyzer/SOUL.md) |\n| Lead Qualifier | 线索评分、跟进序列 | 线索来得太快、来不及筛选时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/real-estate/lead-qualifier/SOUL.md) |\n| Property Video | 房源视频、虚拟看房、布置方案 | 需要批量做房源视频内容时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/real-estate/property-video/SOUL.md) |\n| Commercial RE | 商业地产分析、Cap Rate、Deal 跟踪 | 需要商业地产投资分析时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/real-estate/commercial-re/SOUL.md) |\n\n## Freelance（自由职业）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Proposal Writer | 提案生成、报价测算 | 花太多时间写 proposal 时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/freelance/proposal-writer/SOUL.md) |\n| Time Tracker | 工时跟踪、开票、利用率 | 常常漏记可计费工时时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/freelance/time-tracker/SOUL.md) |\n| Client Manager | 客户 CRM、合同跟踪 | 同时管理多个客户和截止日时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/freelance/client-manager/SOUL.md) |\n\n## Moltbook\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Community Manager | 发帖、互动、积累 karma | 想让 agent 在 Moltbook 维持社交存在感时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/moltbook/community-manager/SOUL.md) |\n| Scout | 扫描信息流、关键词监控、摘要 | 想监控 Moltbook 上的相关讨论和机会时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/moltbook/scout/SOUL.md) |\n| Growth Agent | 涨粉、子圈层运营、策略 | 想扩大 agent 在 Moltbook 上的影响力时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/moltbook/growth-agent/SOUL.md) |\n\n## Supply Chain（供应链）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Route Optimizer | 配送路径、交通、载重优化 | 需要更优配送规划时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/supply-chain/route-optimizer/SOUL.md) |\n| Inventory Forecaster | 需求预测、补货点建议 | 想通过预测防止断货时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/supply-chain/inventory-forecaster/SOUL.md) |\n| Vendor Evaluator | 供应商评分、质量跟踪 | 需要数据驱动地选供应商时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/supply-chain/vendor-evaluator/SOUL.md) |\n\n## Compliance（合规）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| GDPR Auditor | GDPR 差距分析、整改计划 | 需要审计数据隐私合规时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/compliance/gdpr-auditor/SOUL.md) |\n| SOC2 Preparer | 证据收集、审计就绪 | 正在准备 SOC 2 认证时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/compliance/soc2-preparer/SOUL.md) |\n| AI Policy Writer | AI 治理、EU AI Act 对齐 | 需要制定组织 AI 使用政策时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/compliance/ai-policy-writer/SOUL.md) |\n| Risk Assessor | 风险评估、缓解方案 | 需要结构化业务风险评估时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/compliance/risk-assessor/SOUL.md) |\n\n## Voice（语音）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Phone Receptionist | 来电接待、路由、预约 | 需要 24/7 电话接待但没有人手时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/voice/phone-receptionist/SOUL.md) |\n| Voicemail Transcriber | 语音信箱转录、行动项提取 | 需要快速处理语音留言时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/voice/voicemail-transcriber/SOUL.md) |\n| Interview Bot | 初筛面试、评分标准 | 需要批量做结构化候选人初筛时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/voice/interview-bot/SOUL.md) |\n\n## Customer Success（客户成功）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| NPS Followup | 差评挽回、个性化触达 | NPS 低分客户需要及时处理时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/customer-success/nps-followup/SOUL.md) |\n| Onboarding Guide | 产品设置、情境化提示 | 新用户需要引导式上手时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/customer-success/onboarding-guide/SOUL.md) |\n\n## Automation（自动化）\n\n| Agent | Specialty | When to Use | [SOUL.md](http://soul.md/) |\n| --- | --- | --- | --- |\n| Negotiation Agent | 账单谈判、合同成交 | 想让 AI 帮你谈账单和合同条件时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/automation/negotiation-agent/SOUL.md) |\n| Job Applicant | 批量投递、简历定制 | 想在睡觉时自动申请大量岗位时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/automation/job-applicant/SOUL.md) |\n| Morning Briefing | 邮件、日历、新闻晨报 | 想在早上收到个性化摘要时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/automation/morning-briefing/SOUL.md) |\n| Flight Scraper | 机票优惠、降价提醒 | 想自动发现便宜航班时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/automation/flight-scraper/SOUL.md) |\n| Overnight Coder | 夜间自主编码、早晨提 PR | 想让代码在你睡觉时继续推进时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/automation/overnight-coder/SOUL.md) |\n| Discord Business | 通过 Discord 跑业务运营 | 你的业务主要在 Discord 上运转时 | [SOUL.md](https://github.com/mergisi/awesome-openclaw-agents/blob/main/agents/automation/discord-business/SOUL.md) |"</script>
+  <script>
+    const markdownSource = JSON.parse(document.getElementById('markdown-source').textContent);
+
+    function stripMarkdownLinks(value) {
+      return value.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1').trim();
+    }
+
+    function splitRow(line) {
+      return line
+        .trim()
+        .replace(/^\|/, '')
+        .replace(/\|$/, '')
+        .split('|')
+        .map((cell) => cell.trim());
+    }
+
+    function parseStandaloneLink(value) {
+      const match = value.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+      if (!match) {
+        return null;
+      }
+      return { label: match[1], href: match[2] };
+    }
+
+    function parseMarkdown(markdown) {
+      const lines = markdown.split('\n');
+      const sections = [];
+      let currentSection = null;
+
+      for (const line of lines) {
+        if (line.startsWith('## ')) {
+          currentSection = {
+            title: line.slice(3).trim(),
+            headers: [],
+            items: [],
+          };
+          sections.push(currentSection);
+          continue;
+        }
+
+        if (!currentSection || !line.startsWith('| ')) {
+          continue;
+        }
+
+        if (line.startsWith('| ---')) {
+          continue;
+        }
+
+        const row = splitRow(line);
+        if (!currentSection.headers.length) {
+          currentSection.headers = row;
+          continue;
+        }
+
+        currentSection.items.push(row);
+      }
+
+      return sections;
+    }
+
+    function createId(index) {
+      return `section-${index + 1}`;
+    }
+
+    function render() {
+      const sections = parseMarkdown(markdownSource);
+      const quickNav = document.getElementById('quickNav');
+      const sectionsRoot = document.getElementById('sections');
+      const totalAgents = sections.reduce((sum, section) => sum + section.items.length, 0);
+
+      document.getElementById('sectionCount').textContent = `${sections.length} 个分类`;
+      document.getElementById('agentCount').textContent = `${totalAgents} 个角色`;
+
+      sections.forEach((section, sectionIndex) => {
+        const sectionId = createId(sectionIndex);
+        const navLink = document.createElement('a');
+        navLink.href = `#${sectionId}`;
+        navLink.textContent = section.title;
+        quickNav.appendChild(navLink);
+
+        const sectionBlock = document.createElement('section');
+        sectionBlock.className = 'section-block';
+        sectionBlock.id = sectionId;
+
+        const head = document.createElement('div');
+        head.className = 'section-head';
+        head.innerHTML = `
+          <h2>${section.title}</h2>
+          <p class="section-note">${section.items.length} 个角色</p>
+        `;
+        sectionBlock.appendChild(head);
+
+        const grid = document.createElement('div');
+        grid.className = 'agent-grid';
+
+        section.items.forEach((item) => {
+          const card = document.createElement('article');
+          card.className = 'agent-card';
+
+          const title = document.createElement('h3');
+          title.textContent = stripMarkdownLinks(item[0]);
+          card.appendChild(title);
+
+          const meta = document.createElement('dl');
+          meta.className = 'agent-meta';
+
+          section.headers.slice(1).forEach((header, index) => {
+            const value = item[index + 1] || '';
+            const label = stripMarkdownLinks(header);
+            const pair = document.createElement('div');
+            const dt = document.createElement('dt');
+            const dd = document.createElement('dd');
+
+            dt.textContent = label;
+            const standaloneLink = parseStandaloneLink(value);
+            if (standaloneLink) {
+              const anchor = document.createElement('a');
+              anchor.href = standaloneLink.href;
+              anchor.target = '_blank';
+              anchor.rel = 'noopener noreferrer';
+              anchor.textContent = standaloneLink.label;
+              dd.appendChild(anchor);
+            } else {
+              dd.textContent = stripMarkdownLinks(value);
+            }
+
+            pair.appendChild(dt);
+            pair.appendChild(dd);
+            meta.appendChild(pair);
+          });
+
+          card.appendChild(meta);
+          grid.appendChild(card);
+        });
+
+        sectionBlock.appendChild(grid);
+        sectionsRoot.appendChild(sectionBlock);
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>
