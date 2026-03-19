@@ -10,26 +10,35 @@
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap"
     rel="stylesheet"
   />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
   <style>
     :root {
-      --bg-primary: #050b14;
-      --bg-secondary: #0b1526;
-      --bg-card: rgba(10, 24, 46, 0.72);
-      --text-primary: #eff6ff;
-      --text-secondary: #a9c0de;
-      --brand-red: #ff3e57;
-      --electric-cyan: #1de8ff;
-      --accent: var(--electric-cyan);
-      --accent-2: var(--brand-red);
-      --accent-glow: rgba(39, 229, 255, 0.35);
-      --line: rgba(141, 181, 227, 0.26);
+      --bg-primary: #f3eee4;
+      --bg-secondary: #ece3d5;
+      --bg-card: rgba(255, 251, 244, 0.84);
+      --bg-card-strong: rgba(250, 244, 235, 0.95);
+      --text-primary: #181410;
+      --text-secondary: #6f6256;
+      --brand-red: #8b4a3a;
+      --accent-warm: #9f6b3f;
+      --accent-deep: #3f5a4b;
+      --accent: var(--brand-red);
+      --accent-2: var(--accent-deep);
+      --accent-glow: rgba(159, 107, 63, 0.18);
+      --line: rgba(103, 86, 68, 0.18);
+      --grid-line: rgba(98, 88, 77, 0.12);
+      --shadow-soft: 0 18px 44px rgba(79, 60, 39, 0.08);
+      --shadow-card: 0 12px 28px rgba(86, 65, 42, 0.08);
 
-      --font-display: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      --font-display: 'Cormorant Garamond', 'Songti SC', 'STSong', serif;
       --font-body: 'Manrope', 'PingFang SC', 'Microsoft YaHei', sans-serif;
 
-      --title-size: clamp(1.6rem, 5.5vw, 4.2rem);
-      --h2-size: clamp(1.25rem, 3.1vw, 2.4rem);
-      --h3-size: clamp(1rem, 2.2vw, 1.5rem);
+      --title-size: clamp(2.1rem, 7vw, 5.6rem);
+      --h2-size: clamp(1.55rem, 4vw, 3.1rem);
+      --h3-size: clamp(1.18rem, 2.6vw, 1.85rem);
       --body-size: clamp(0.78rem, 1.3vw, 1.06rem);
       --small-size: clamp(0.66rem, 1vw, 0.84rem);
 
@@ -63,9 +72,9 @@
       font-family: var(--font-body);
       color: var(--text-primary);
       background:
-        radial-gradient(120vh 90vh at 82% -12%, rgba(39, 229, 255, 0.12), transparent 62%),
-        radial-gradient(100vh 90vh at -12% 12%, rgba(255, 95, 114, 0.12), transparent 70%),
-        linear-gradient(160deg, var(--bg-primary), #070f1d 42%, #091326 100%);
+        radial-gradient(120vh 90vh at 82% -12%, rgba(186, 162, 134, 0.12), transparent 62%),
+        radial-gradient(100vh 90vh at -12% 12%, rgba(140, 111, 84, 0.1), transparent 70%),
+        linear-gradient(160deg, #f6f1e8, var(--bg-primary) 45%, #efe5d7 100%);
     }
 
     .progress-wrap {
@@ -74,7 +83,7 @@
       left: 0;
       width: 100%;
       height: 4px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(62, 49, 34, 0.08);
       z-index: 50;
     }
 
@@ -101,8 +110,8 @@
       width: 10px;
       height: 10px;
       border-radius: 999px;
-      border: 1px solid rgba(239, 246, 255, 0.4);
-      background: rgba(239, 246, 255, 0.14);
+      border: 1px solid rgba(73, 56, 39, 0.28);
+      background: rgba(255, 249, 242, 0.74);
       cursor: pointer;
       transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
     }
@@ -124,18 +133,18 @@
       flex-direction: column;
       position: relative;
       isolation: isolate;
-      --title-main: var(--electric-cyan);
-      --title-sub: var(--brand-red);
+      --title-main: #090705;
+      --title-sub: #4d3428;
     }
 
     .slide:nth-of-type(2n) {
-      --title-main: #ff546d;
-      --title-sub: #21deff;
+      --title-main: #090705;
+      --title-sub: #33483d;
     }
 
     .slide:nth-of-type(3n) {
-      --title-main: #1de8ff;
-      --title-sub: #ff7a8f;
+      --title-main: #090705;
+      --title-sub: #65462d;
     }
 
     .slide::before {
@@ -143,10 +152,10 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(transparent 97%, rgba(38, 58, 90, 0.45) 100%),
-        linear-gradient(90deg, transparent 97%, rgba(38, 58, 90, 0.35) 100%);
-      background-size: 28px 28px;
-      opacity: 0.28;
+        linear-gradient(transparent 96%, var(--grid-line) 100%),
+        linear-gradient(90deg, transparent 96%, var(--grid-line) 100%);
+      background-size: 38px 38px;
+      opacity: 0.86;
       pointer-events: none;
       z-index: -1;
     }
@@ -176,34 +185,43 @@
     h2,
     h3 {
       font-family: var(--font-display);
-      line-height: 1.15;
-      letter-spacing: 0.02em;
+      line-height: 0.96;
+      letter-spacing: 0;
+      font-weight: 700;
       text-wrap: balance;
       color: var(--title-main);
-      text-shadow: 0 0 22px rgba(29, 232, 255, 0.16);
+      text-shadow: none;
     }
 
     h1 {
       font-size: var(--title-size);
       max-width: 22ch;
+      line-height: 0.9;
+    }
+
+    .title-slide h1 {
+      max-width: 100%;
+      white-space: nowrap;
     }
 
     h2 {
       font-size: var(--h2-size);
       max-width: 28ch;
+      line-height: 0.94;
     }
 
     h3 {
       font-size: var(--h3-size);
       max-width: 34ch;
       color: var(--title-sub);
-      text-shadow: 0 0 16px rgba(255, 62, 87, 0.2);
+      text-shadow: none;
+      line-height: 0.98;
     }
 
     @supports ((-webkit-background-clip: text) or (background-clip: text)) {
       h1,
       h2 {
-        background: linear-gradient(118deg, var(--title-main) 0%, var(--title-sub) 100%);
+        background: linear-gradient(135deg, var(--title-main) 0%, var(--title-sub) 92%);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -227,19 +245,19 @@
 
     .accent {
       color: var(--accent);
-      text-shadow: 0 0 18px rgba(39, 229, 255, 0.32);
+      text-shadow: none;
     }
 
     .tag {
       display: inline-flex;
       align-items: center;
       width: fit-content;
-      border: 1px solid rgba(39, 229, 255, 0.45);
+      border: 1px solid rgba(127, 88, 66, 0.24);
       border-radius: 999px;
       padding: 0.35em 0.9em;
       font-size: var(--small-size);
-      color: #d6f9ff;
-      background: rgba(15, 46, 64, 0.45);
+      color: #4f3d2d;
+      background: rgba(255, 248, 239, 0.88);
     }
 
     .card-grid {
@@ -260,23 +278,25 @@
     .card {
       padding: clamp(0.88rem, 1.55vw, 1.25rem);
       border-radius: 16px;
-      background: var(--bg-card);
+      background:
+        linear-gradient(180deg, rgba(255, 252, 246, 0.96), rgba(247, 239, 229, 0.94)),
+        var(--bg-card);
       border: 1px solid var(--line);
-      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-card);
       display: grid;
       gap: 0.72rem;
       min-height: 0;
     }
 
     .card h3 {
-      font-size: clamp(0.95rem, 1.7vw, 1.3rem);
+      font-size: clamp(1.08rem, 1.95vw, 1.52rem);
       color: var(--title-main);
-      text-shadow: 0 0 12px rgba(29, 232, 255, 0.24);
+      text-shadow: none;
     }
 
     .card p,
     .card li {
-      color: #d8e8fc;
+      color: #3d3126;
       font-size: clamp(0.72rem, 1.15vw, 0.96rem);
       line-height: 1.58;
     }
@@ -290,13 +310,13 @@
       width: clamp(2rem, 3vw, 2.5rem);
       aspect-ratio: 1;
       border-radius: 999px;
-      border: 1px solid rgba(39, 229, 255, 0.42);
-      background: rgba(8, 26, 49, 0.88);
+      border: 1px solid rgba(127, 88, 66, 0.24);
+      background: rgba(251, 245, 236, 0.96);
       color: var(--accent);
       font-family: var(--font-display);
       font-size: clamp(0.72rem, 1.1vw, 0.9rem);
       letter-spacing: 0.08em;
-      box-shadow: 0 0 18px rgba(29, 232, 255, 0.16);
+      box-shadow: 0 8px 20px rgba(75, 57, 39, 0.08);
     }
 
     .bullet-list {
@@ -331,8 +351,10 @@
       padding: clamp(1rem, 1.9vw, 1.45rem);
       border-radius: 18px;
       border: 1px solid var(--line);
-      background: var(--bg-card);
-      backdrop-filter: blur(8px);
+      background:
+        linear-gradient(180deg, rgba(255, 252, 247, 0.96), rgba(247, 239, 229, 0.92)),
+        var(--bg-card);
+      box-shadow: var(--shadow-card);
     }
 
     .topic-block h3 {
@@ -391,14 +413,15 @@
     .founder-story {
       padding: clamp(0.85rem, 1.55vw, 1.25rem);
       border-radius: 14px;
-      border: 1px solid rgba(39, 229, 255, 0.32);
-      background: rgba(7, 21, 40, 0.72);
+      border: 1px solid rgba(127, 88, 66, 0.2);
+      background: rgba(251, 244, 235, 0.92);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
     }
 
     .founder-story p {
       font-size: clamp(0.64rem, 0.95vw, 0.82rem);
-      line-height: 1.62;
-      color: #d5e9ff;
+      line-height: 1.72;
+      color: #3c3127;
     }
 
     .icon-flow {
@@ -414,10 +437,11 @@
       gap: clamp(0.4rem, 0.9vw, 0.65rem);
       padding: clamp(0.34rem, 0.75vw, 0.56rem) clamp(0.56rem, 1.1vw, 0.86rem);
       border-radius: 999px;
-      border: 1px solid rgba(142, 196, 245, 0.35);
-      background: rgba(12, 27, 49, 0.58);
+      border: 1px solid rgba(127, 88, 66, 0.22);
+      background: rgba(255, 250, 244, 0.92);
       font-size: clamp(0.62rem, 0.9vw, 0.8rem);
-      color: #dbeeff;
+      color: #3d2f24;
+      box-shadow: 0 6px 16px rgba(70, 54, 34, 0.06);
     }
 
     .icon-node img {
@@ -439,8 +463,8 @@
       object-fit: contain;
       object-position: center;
       border-radius: 18px;
-      border: 1px solid rgba(200, 235, 255, 0.3);
-      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(127, 88, 66, 0.18);
+      box-shadow: var(--shadow-soft);
       justify-self: end;
     }
 
@@ -483,21 +507,27 @@
       object-fit: contain;
       object-position: center;
       border-radius: 14px;
-      border: 1px solid rgba(143, 199, 250, 0.28);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(127, 88, 66, 0.18);
+      box-shadow: var(--shadow-soft);
       justify-self: end;
-      background: rgba(8, 17, 32, 0.52);
+      background: rgba(248, 240, 230, 0.82);
     }
 
     .logo {
       width: clamp(82px, 11vw, 150px);
       height: auto;
-      filter: drop-shadow(0 0 18px rgba(255, 95, 114, 0.28));
+      filter: drop-shadow(0 8px 18px rgba(98, 73, 48, 0.12));
     }
 
     .title-slide .slide-content {
       align-items: center;
       text-align: center;
+    }
+
+    .title-slide h1 {
+      font-size: clamp(2.1rem, 7vw, 5.2rem);
+      max-width: 100%;
+      letter-spacing: -0.02em;
     }
 
     .placeholder-slide {
@@ -514,7 +544,7 @@
     .placeholder-mark {
       letter-spacing: 0.22em;
       font-size: var(--small-size);
-      color: rgba(221, 238, 255, 0.68);
+      color: rgba(89, 72, 55, 0.62);
       text-transform: uppercase;
     }
 
@@ -525,8 +555,8 @@
     }
 
     .links a {
-      color: #90dbff;
-      text-decoration-color: rgba(144, 219, 255, 0.55);
+      color: #7b5441;
+      text-decoration-color: rgba(123, 84, 65, 0.45);
       text-underline-offset: 2px;
       word-break: break-all;
     }
@@ -544,20 +574,20 @@
       gap: 0.62rem;
       padding: clamp(1rem, 1.8vw, 1.4rem);
       border-radius: 18px;
-      border: 1px solid rgba(115, 207, 255, 0.28);
+      border: 1px solid rgba(127, 88, 66, 0.18);
       background:
-        linear-gradient(180deg, rgba(14, 33, 56, 0.9), rgba(8, 18, 33, 0.88)),
-        rgba(10, 24, 46, 0.72);
+        linear-gradient(180deg, rgba(255, 252, 247, 0.96), rgba(247, 239, 229, 0.92)),
+        var(--bg-card);
       text-decoration: none;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.24);
+      box-shadow: var(--shadow-card);
       transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
     }
 
     .resource-card:hover,
     .resource-card:focus-visible {
       transform: translateY(-4px);
-      border-color: rgba(39, 229, 255, 0.56);
-      box-shadow: 0 20px 36px rgba(3, 11, 25, 0.34);
+      border-color: rgba(127, 88, 66, 0.36);
+      box-shadow: 0 18px 32px rgba(74, 58, 39, 0.12);
       outline: none;
     }
 
@@ -567,7 +597,7 @@
     }
 
     .resource-card p {
-      color: #d5e8ff;
+      color: #41352a;
       max-width: 34ch;
     }
 
@@ -580,7 +610,7 @@
 
     .footer-note {
       margin-top: auto;
-      color: rgba(215, 231, 253, 0.7);
+      color: rgba(89, 72, 55, 0.72);
       font-size: var(--small-size);
     }
 
@@ -622,7 +652,7 @@
       left: clamp(10px, 2vw, 20px);
       bottom: clamp(8px, 1.8vw, 16px);
       font-size: var(--small-size);
-      color: rgba(208, 228, 248, 0.7);
+      color: rgba(89, 72, 55, 0.64);
       z-index: 30;
     }
 
